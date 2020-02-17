@@ -473,6 +473,22 @@ class FdtRo(object):
         """
         return check_err(fdt_node_offset_by_phandle(self._fdt, phandle), quiet)
 
+    def node_offset_by_compatible(self, nodeoffset, compatible, quiet=()):
+        """Get the offset of a node with the given 'compatible' value
+
+        Args:
+            nodeoffset: Node offset of previous node
+            compatible: 'compatible' string to match against
+            quiet: Errors to ignore (empty to raise on all errors)
+
+        Returns:
+            The offset of node with that 'compatible' value, if any
+
+        Raises:
+            FdtException if no node found or other error occurs
+        """
+        return check_err(fdt_node_offset_by_compatible(self._fdt, nodeoffset, compatible), quiet)
+
 
 class Fdt(FdtRo):
     """Device tree class, supporting all operations
