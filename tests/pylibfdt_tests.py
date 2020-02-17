@@ -382,6 +382,14 @@ class PyLibfdtBasicTests(unittest.TestCase):
                           self.get_prop("prop-uint64").as_uint64())
         self.assertEqual(-2, self.get_prop("prop-int64").as_int64())
 
+    def testGetIntListProperties(self):
+        """Test that we can access properties as lists of integers"""
+        int32list = self.get_prop("prop-int32-list").as_int32_list()
+        self.assertEqual(-20, int32list[0])
+        self.assertEqual(0, int32list[1])
+        self.assertEqual(25, int32list[2])
+        # TODO expand
+
     def testReserveMap(self):
         """Test that we can access the memory reserve map"""
         self.assertEqual(2, self.fdt.num_mem_rsv())
